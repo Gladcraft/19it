@@ -4,7 +4,7 @@ module OneNineIt
 
     def search(files, changes, options={})
       matches = []
-      files.each do |file|
+      glob_files(files).each do |file|
         file_string = File.read(file)
         changes.each do |change|
           matchdata = file_string.match(change.parse_sidekick)
@@ -19,6 +19,10 @@ module OneNineIt
       matches
     end
 
+    def glob_files(files)
+      globs = files.map {|e| File.directory?(e) ? "#{e}/**/*" : e }
+      Dir.glob(globs).flatten.select {|e| File.file? e }
+    end
   end
 end
 

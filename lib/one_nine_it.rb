@@ -8,7 +8,7 @@ module OneNineIt
   CHANGES = [
     {:desc=>"A module's constants", :parse_sidekick=>/\.constants[ (]/,
       :solution=>"Module#constants.map {|e| e.to_s }"
-      # Example.constants  
+      # Example.constants 
     }
   ]
 
